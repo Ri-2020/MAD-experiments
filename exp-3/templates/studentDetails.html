@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Data</title>
+    <style>
+        table , tr , td , th{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Details</h1>
+    <table >
+        <tr>
+            <th>Student id</th>
+            <th>Course id</th>
+            <th>Marks</th>
+        </tr>
+        {% for element in elements %}
+        <tr>
+            <td>{{element['Student id']}}</td>
+            <td>{{element['Course id']}}</td>
+            <td>{{element['Marks']}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2">
+                Total Marks
+            </td>
+            <td>{{totalMarks}}</td>
+        </tr>
+    </table>  <br>
+    <a href="/">Go Back</a>
+</body>
+</html>

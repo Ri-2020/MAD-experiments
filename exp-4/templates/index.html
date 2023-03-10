@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        .article-container{
+            border-bottom: 1px solid black;
+            padding: 10px;
+            background-color: rgb(249, 251, 255);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .article-container:hover{
+            background-color: rgb(214, 229, 253);;
+        }
+        .article-container:first-child{
+            border-radius: 10px 10px 0px 0px;
+        }
+        .article-container:last-child{
+            border: none;
+            border-radius: 0px 0px 10px 10px;
+        }
+        b{
+            margin-right: 10px;
+        }
+        b::after{
+            content: ": ";
+        }
+
+        .all-articles{
+            margin: 10px 50px;
+            border-radius: 10px;
+            background-color: rgb(249, 251, 255);
+            padding: 10px 0px 2px 0px;
+        }
+
+        .heading{
+            margin: 10px 10px 10px 1em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .all-article-inner{
+            margin: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>This is index.html file</h1>
+    <div class="all-articles">
+        <div>
+            <h2 class="heading">Articles</h2>
+        </div>
+        <div class="all-article-inner">
+            {% for article in articles %}
+        <div class="article-container">
+            <input type="checkbox" name="" id="">
+            <b>{{article[1]}} </b>
+            <span>{{article[2]}}</span>
+        </div>
+        
+        {% endfor %}
+        </div>
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,26 @@
+CREATE TABLE "courses" (
+	"course_id"	INTEGER,
+	"course_name"	TEXT NOT NULL,
+	"course_code"	TEXT NOT NULL UNIQUE,
+	"course_description"	TEXT,
+	PRIMARY KEY("course_id" AUTOINCREMENT)
+);
+
+
+CREATE TABLE "students" (
+	"student_id"	INTEGER,
+	"roll_number"	TEXT NOT NULL UNIQUE,
+	"first_name"	TEXT NOT NULL,
+	"last_name"	TEXT,
+	PRIMARY KEY("student_id" AUTOINCREMENT)
+);
+
+CREATE TABLE "enrollment" (
+	"enrollment_id"	INTEGER,
+	"student_id"	INTEGER NOT NULL,
+	"course_id"	INTEGER NOT NULL,
+	PRIMARY KEY("enrollment_id" AUTOINCREMENT),
+	FOREIGN KEY("course_id") REFERENCES courses("course_id"),
+	FOREIGN KEY("student_id") REFERENCES courses("student_id"),
+	
+);

@@ -1,5 +1,5 @@
 import sqlalchemy
-from flask import Flask
+import os
 from sqlalchemy import create_engine
 from sqlalchemy import Table , Column , String, Integer , ForeignKey
 from sqlalchemy import select
@@ -7,6 +7,16 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import relationship
+
+from flask import Flask
+from flask import render_template
+from flask import request
+
+
+curr_dir = os.path.abspath(os.path.dirname(__file__))
+
+app = Flask(__name__)
+
 
 Base = declarative_base()
 
@@ -65,11 +75,14 @@ def addUser(user):
             session.commit()
     session.close()
 
-def printAllArticles():
+def getAllArticles():
     stmt = select(Article)
+    articles = []
     with engine.connect() as conn:
         for row in conn.execute(stmt):
-            print(row)
+            # print(row)
+            articles.append(row)
+    return articles
 
 def printAllUsers():
     stmt = select(User)
@@ -77,8 +90,16 @@ def printAllUsers():
         for row in conn.execute(stmt):
             print(row)
 
+
+
+@app.route("/" , methods =["GET", "POST"])
+def indexFunction():
+    articles = getAllArticles()
+    print("Ok tested")
+    return render_template("index.html",  articles= articles)
+
+
 if __name__ == "__main__":
-    # addArticle(Article(title = "The first man" , content="This is the story of the man which was the first man on this planet") , 7)
-    addUser(User(username = "akash" , email="akash@mail"))
-    printAllUsers()
+    app.debug = True
+    app.run()
 
